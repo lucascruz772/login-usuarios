@@ -68,6 +68,7 @@ function UsuariosTabela() {
       alert('Usuário excluído com sucesso!');
     }
   };
+  
 
   const totalPages = Math.ceil(users.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
