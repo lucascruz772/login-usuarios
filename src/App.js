@@ -7,7 +7,7 @@ import UsuariosTabela from './UsuariosTabela/Usuarios';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/login-usuarios">
       <div className="App">
         <Routes>
           <Route path="/" element={<Login />} />
