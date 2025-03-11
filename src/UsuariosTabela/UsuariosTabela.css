@@ -1,0 +1,183 @@
+/* Estilos gerais */
+div {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  form div {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  form input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  form input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #218838;
+  }
+  
+  /* Tabela */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  td {
+    color: #555;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Paginação */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .pagination button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  
+  .pagination span {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Botão de logout */
+  button:last-child {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:last-child:hover {
+    background-color: #c82333;
+  }
+
+  /* Estilos para os botões na tabela */
+td button {
+    padding: 6px 10px;
+    font-size: 14px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  td button:first-child:not(:last-child) {
+    background-color:rgb(4, 75, 21); /* Amarelo para Editar/Salvar */
+    color: #fff;
+  }
+  
+  td button:first-child:not(:last-child):hover {
+    background-color:rgb(4, 117, 55);
+  }
+  
+  td button:last-child {
+    background-color: #dc3545; /* Vermelho para Excluir/Cancelar */
+    color: #fff;
+  }
+  
+  td button:last-child:hover {
+    background-color: #c82333;
+  }
+  
+  /* Estilos para os inputs na edição */
+  td input {
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  td input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
