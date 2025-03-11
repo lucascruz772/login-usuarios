@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './UsuariosTabela.css';
 
 function UsuariosTabela() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState(JSON.parse(localStorage.getItem('users')) || []);
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -11,24 +12,39 @@ function UsuariosTabela() {
   const [editEmail, setEditEmail] = useState('');
   const [editPassword, setEditPassword] = useState('');
   const itemsPerPage = 10;
-  const navigate = useNavigate();
+  const [error, setError] = useState('');
+  
+
+  // Função para mascarar a senha
+  const maskPassword = (password) => {
+    return '*'.repeat(password.length); // Substitui a senha por asteriscos
+  };
 
   const handleAddUser = (e) => {
     e.preventDefault();
     if (!newEmail || !newPassword) {
-      alert('Por favor, preencha email e senha.');
+      setError('Por favor, preencha email e senha.');
       return;
     }
+  
+    const emailExists = users.some((user) => user.email === newEmail);
+    if (emailExists) {
+      setError('Este e-mail já está cadastrado. Por favor, use outro e-mail.');
+      return;
+    }
+  
     const newUser = { email: newEmail, password: newPassword };
     const updatedUsers = [...users, newUser];
     setUsers(updatedUsers);
     localStorage.setItem('users', JSON.stringify(updatedUsers));
     setNewEmail('');
     setNewPassword('');
+    setError(''); // Limpa o erro
     alert('Usuário adicionado com sucesso!');
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
     navigate('/', { replace: true });
   };
 
@@ -40,9 +56,18 @@ function UsuariosTabela() {
 
   const handleSaveEdit = () => {
     if (!editEmail || !editPassword) {
-      alert('Por favor, preencha email e senha.');
+      setError('Por favor, preencha email e senha.');
       return;
     }
+  
+    const emailExists = users.some(
+      (user, index) => user.email === editEmail && index !== editingUserIndex
+    );
+    if (emailExists) {
+      setError('Este e-mail já está cadastrado. Por favor, use outro e-mail.');
+      return;
+    }
+  
     const updatedUsers = users.map((user, i) =>
       i === editingUserIndex ? { email: editEmail, password: editPassword } : user
     );
@@ -51,6 +76,7 @@ function UsuariosTabela() {
     setEditingUserIndex(null);
     setEditEmail('');
     setEditPassword('');
+    setError(''); // Limpa o erro
     alert('Usuário atualizado com sucesso!');
   };
 
@@ -68,7 +94,6 @@ function UsuariosTabela() {
       alert('Usuário excluído com sucesso!');
     }
   };
-  
 
   const totalPages = Math.ceil(users.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -105,6 +130,7 @@ function UsuariosTabela() {
         </div>
         <button type="submit">Adicionar Usuário</button>
       </form>
+      {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
 
       {users.length === 0 ? (
         <p>Nenhum usuário cadastrado ainda.</p>
@@ -145,7 +171,7 @@ function UsuariosTabela() {
                   ) : (
                     <>
                       <td>{user.email}</td>
-                      <td>{user.password}</td>
+                      <td>{maskPassword(user.password)}</td>
                       <td>
                         <button onClick={() => handleEdit(startIndex + index)}>Editar</button>
                         <button onClick={() => handleDelete(startIndex + index)}>Excluir</button>
@@ -173,7 +199,7 @@ function UsuariosTabela() {
           </div>
         </>
       )}
-      <button onClick={handleLogout}>Voltar ao Login</button>
+      <button className="logout-button" onClick={handleLogout}>Voltar ao Login</button>
     </div>
   );
 }

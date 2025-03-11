@@ -1,24 +1,51 @@
 /* Estilos gerais */
-div {
+* {
+    box-sizing: border-box; /* Inclui padding e bordas no cálculo de largura/altura */
+  }
+  
+  div {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     text-align: center;
+    transition: transform 0.3s ease;
+    position: relative; /* Para controle de z-index */
+    overflow: hidden; /* Evita transbordo do conteúdo */
+  }
+  
+  div:hover {
+    transform: translateY(-5px);
+    z-index: 1; /* Garante que fique acima de outros elementos ao hover */
+  }
+  
+  /* Espaçamento entre containers adjacentes */
+  div + div {
+    margin-top: 20px;
   }
   
   h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #2d995b;
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
   
-  /* Formulário */
+  /* Formulário de adição de usuários */
   form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 25px;
+    margin-bottom: 30px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
   }
   
   form div {
@@ -28,67 +55,88 @@ div {
   }
   
   form label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+    font-size: 15px;
   }
   
   form input {
-    padding: 8px;
+    padding: 14px;
     font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background: #ffffff;
     outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 100%; /* Evita que o input exceda o container */
   }
   
   form input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    border-color: #2d995b;
+    box-shadow: 0 0 8px rgba(45, 153, 91, 0.2);
   }
   
   form button {
-    padding: 10px;
+    padding: 14px;
     font-size: 16px;
-    background-color: #28a745;
+    background-color: #2d995b;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    position: relative;
+    z-index: 1;
   }
   
   form button:hover {
-    background-color: #218838;
+    background-color: #257a47;
+    transform: scale(1.02); /* Reduzido de 1.03 para evitar sobreposição */
   }
   
-  /* Tabela */
+  /* Tabela de usuários */
   table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    overflow-x: auto; /* Permite rolagem horizontal em telas menores */
+    background: #ffffff;
+    display: block; /* Para suportar overflow-x */
   }
   
   th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    padding: 18px;
     text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    min-width: 100px; /* Largura mínima para colunas */
+    max-width: 200px; /* Limita a largura máxima */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona reticências para texto longo */
+    white-space: nowrap; /* Evita quebras de linha */
   }
   
   th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    color: #333;
+    background: #f7f7f7;
+    color: #2d995b;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
   }
   
   td {
-    color: #555;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
+    color: #444;
+    font-size: 15px;
+    transition: background 0.2s;
   }
   
   tr:hover {
-    background-color: #f1f1f1;
+    background: #f9f9f9;
   }
   
   /* Paginação */
@@ -96,88 +144,141 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 30px;
   }
   
   .pagination button {
-    padding: 8px 12px;
+    padding: 10px 16px;
     font-size: 14px;
-    background-color: #007bff;
+    background-color: #2d995b;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-  }
-  
-  .pagination button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    transition: background 0.3s, transform 0.2s;
+    position: relative;
+    z-index: 1;
   }
   
   .pagination button:hover:not(:disabled) {
-    background-color: #0056b3;
+    background-color: #257a47;
+    transform: scale(1.02); /* Reduzido de 1.05 para evitar sobreposição */
+  }
+  
+  .pagination button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
   }
   
   .pagination span {
-    font-size: 14px;
-    color: #333;
+    font-size: 15px;
+    color: #555;
   }
   
-  /* Botão de logout */
-  button:last-child {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:last-child:hover {
-    background-color: #c82333;
-  }
-
-  /* Estilos para os botões na tabela */
-td button {
-    padding: 6px 10px;
+  /* Botões na tabela (Editar/Excluir) */
+  td button {
+    padding: 8px 14px;
     font-size: 14px;
-    margin-right: 5px;
+    margin-right: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    position: relative;
+    z-index: 1;
   }
   
   td button:first-child:not(:last-child) {
-    background-color:rgb(4, 75, 21); /* Amarelo para Editar/Salvar */
+    background-color: #2d995b; /* Editar/Salvar */
     color: #fff;
   }
   
   td button:first-child:not(:last-child):hover {
-    background-color:rgb(4, 117, 55);
+    background-color: #257a47;
+    transform: scale(1.02); /* Reduzido de 1.05 */
   }
   
   td button:last-child {
-    background-color: #dc3545; /* Vermelho para Excluir/Cancelar */
+    background-color: #dc3545; /* Excluir/Cancelar */
     color: #fff;
   }
   
   td button:last-child:hover {
     background-color: #c82333;
+    transform: scale(1.02); /* Reduzido de 1.05 */
   }
   
-  /* Estilos para os inputs na edição */
+  /* Inputs na edição */
   td input {
-    padding: 6px;
+    padding: 10px;
     font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
     width: 100%;
-    box-sizing: border-box;
+    max-width: 100%; /* Evita overflow */
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
   
   td input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    border-color: #2d995b;
+    box-shadow: 0 0 8px rgba(45, 153, 91, 0.2);
+  }
+  
+  /* Coluna da senha mascarada */
+  td:nth-child(2) {
+    font-family: monospace;
+    letter-spacing: 2px;
+    color: #999;
+    font-size: 14px;
+  }
+  
+  /* Media Queries para Responsividade */
+  @media (max-width: 768px) {
+    div {
+      padding: 20px;
+      max-width: 100%; /* Ajusta para ocupar toda a largura em telas menores */
+    }
+  
+    form, table {
+      width: 100%;
+    }
+  
+    th, td {
+      padding: 12px;
+      font-size: 14px;
+      min-width: 80px; /* Ajusta largura mínima para telas menores */
+    }
+  
+    td button {
+      margin: 5px 0;
+      width: 100%; /* Botões ocupam toda a largura em telas menores */
+    }
+  }
+
+  /* Estilo para o botão "Voltar ao Login" */
+.logout-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #dc3545; /* Vermelho para indicar uma ação de saída */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  /* Efeito ao passar o mouse */
+  .logout-button:hover {
+    background-color: #c82333; /* Vermelho mais escuro */
+    transform: translateY(-2px); /* Eleva o botão */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+  }
+  
+  /* Efeito ao clicar */
+  .logout-button:active {
+    transform: translateY(0); /* Volta à posição original */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra reduzida */
   }

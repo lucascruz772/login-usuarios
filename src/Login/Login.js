@@ -13,6 +13,7 @@ function Login() {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const user = users.find((u) => u.email === email && u.password === password);
     if (user) {
+      localStorage.setItem('isAuthenticated', 'true'); // Define que o usuário está logado
       navigate('/usuarios');
     } else {
       setError('Email ou senha inválidos');
