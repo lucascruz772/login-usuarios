@@ -7,3 +7,13 @@
   justify-content: center;
   background: #f4f7f6; /* Fundo suave e moderno */
 }
+
+:root {
+  --background: #f4f7f6;       /* Fundo claro */
+  --text: #333;               /* Texto escuro */
+  --container-bg: #ffffff;    /* Fundo de containers */
+  --primary: #2d995b;         /* Cor primária */
+  --button-bg: #2d995b;       /* Fundo dos botões */
+  --button-text: #ffffff;     /* Texto dos botões */
+  --shadow: rgba(0, 0, 0, 0.1); /* Sombra clara */
+}

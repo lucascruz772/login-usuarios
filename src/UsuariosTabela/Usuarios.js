@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UsuariosTabela.css';
+
 
 function UsuariosTabela() {
   const navigate = useNavigate();
@@ -13,11 +14,11 @@ function UsuariosTabela() {
   const [editPassword, setEditPassword] = useState('');
   const itemsPerPage = 10;
   const [error, setError] = useState('');
-  
+
 
   // Função para mascarar a senha
   const maskPassword = (password) => {
-    return '*'.repeat(password.length); // Substitui a senha por asteriscos
+    return '*'.repeat(password.length);
   };
 
   const handleAddUser = (e) => {
@@ -39,7 +40,7 @@ function UsuariosTabela() {
     localStorage.setItem('users', JSON.stringify(updatedUsers));
     setNewEmail('');
     setNewPassword('');
-    setError(''); // Limpa o erro
+    setError('');
     alert('Usuário adicionado com sucesso!');
   };
 
@@ -54,6 +55,7 @@ function UsuariosTabela() {
     setEditPassword(users[index].password);
   };
 
+  //Edição
   const handleSaveEdit = () => {
     if (!editEmail || !editPassword) {
       setError('Por favor, preencha email e senha.');
@@ -76,10 +78,11 @@ function UsuariosTabela() {
     setEditingUserIndex(null);
     setEditEmail('');
     setEditPassword('');
-    setError(''); // Limpa o erro
+    setError('');
     alert('Usuário atualizado com sucesso!');
   };
 
+  //Deletando
   const handleCancelEdit = () => {
     setEditingUserIndex(null);
     setEditEmail('');
